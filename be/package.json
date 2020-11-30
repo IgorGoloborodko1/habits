@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "back-end-part",
   "main": "index.ts",
-  "type": "module",
   "scripts": {
     "build": "tsc",
     "start": "concurrently -k \"tsc -w\" \"nodemon ./dist/src/index.js\"",
