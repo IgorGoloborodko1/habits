@@ -52,6 +52,12 @@
     }
   },
   "lint-staged": {
-    "!(*spec).ts": ["prettier --write src/", "eslint src/"]
+    "!(*spec).ts": [
+      "prettier --write src/",
+      "eslint src/"
+    ]
+  },
+  "dependencies": {
+    "socket.io": "^3.0.3"
   }
 }
