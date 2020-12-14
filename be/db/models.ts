@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
+const { Schema } = mongoose;
 
-const TaskSchema = mongoose.Schema({
+const TaskSchema = new Schema({
   id: {
     type: String,
     required: true
@@ -11,7 +12,7 @@ const TaskSchema = mongoose.Schema({
   }
 });
 
-const AchievementSchema = mongoose.Schema({
+const AchievementSchema = new Schema({
   id: {
     type: String,
     required: true
@@ -26,7 +27,7 @@ const AchievementSchema = mongoose.Schema({
   }
 });
 
-const ChallengeSchema = mongoose.Schema({
+const ChallengeSchema = new Schema({
   id: {
     type: String,
     required: true
@@ -37,7 +38,7 @@ const ChallengeSchema = mongoose.Schema({
   }
 });
 
-const UserSchema = mongoose.Schema({
+const UserSchema = new Schema({
   id: {
     type: String,
     required: true
