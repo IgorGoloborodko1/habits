@@ -40,39 +40,39 @@ const challengesMock: Challenge[] = [{
 
 describe(`${getCurrentTask} test suit`, () => {
   test(`${getCurrentTask} should return actual task from challenge`, () => {
-    expect(getCurrentTask('1', challengesMock)).toEqual(actualTaskMock1);
+    expect(getCurrentTask('1',)).toEqual(actualTaskMock1);
   });
 });
 
-// describe(`${getAchievements} test suit`, () => {
-//   test(`${getAchievements} should return achievement from challenge`, () => {
-//     expect(getAchievements(1, challengesMock)).toEqual([actualAchievementMock]);
-//   });
+describe(`${getAchievements} test suit`, () => {
+  test(`${getAchievements} should return achievement from challenge`, () => {
+    expect(getAchievements('1')).toEqual([actualAchievementMock]);
+  });
 
-// });
+});
 
-// describe(`${getTaskArchive} test suit`, () => {
-//   test(`${getTaskArchive} should return past tasks`, () => {
-//     expect(getTaskArchive(1, challengesMock)).toEqual([actualTaskMock2]);
-//   });
-// });
+describe(`${getTaskArchive} test suit`, () => {
+  test(`${getTaskArchive} should return past tasks`, () => {
+    expect(getTaskArchive('1')).toEqual([actualTaskMock2]);
+  });
+});
 
-// describe(`${startNewChallenge} test suit`, () => {
-//   test(`${startNewChallenge} should return challenge with provided params`, () => {
-//     expect(startNewChallenge([actualTaskMock1, actualTaskMock2], [actualAchievementMock], [challengesMock], 6)).toEqual({
-//         id : 1,
-//         state: 'InProgress',
-//         startDate: new Date(),
-//         tasksOrder: [actualTaskMock1, actualTaskMock2],
-//         actualAchievements: [actualAchievementMock],
-//         duration: 30,
-//     });
-//   });
+describe(`${startNewChallenge} test suit`, () => {
+  test(`${startNewChallenge} should return challenge with provided params`, () => {
+    expect(startNewChallenge([actualTaskMock1, actualTaskMock2], [actualAchievementMock], 30, 6)).toEqual({
+        id : 1,
+        state: 'InProgress',
+        startDate: new Date(),
+        tasksOrder: [actualTaskMock1, actualTaskMock2],
+        actualAchievements: [actualAchievementMock],
+        duration: 30,
+    });
+  });
 
-// });
+});
 
-// describe(`${calculateAchievementsStatus} test suit`, () => {
-//   test(`${calculateAchievementsStatus} should exist`, () => {
-//     expect(calculateAchievementsStatus).toEqual();
-//   });
-// });
+describe(`${calculateAchievementsStatus} test suit`, () => {
+  test(`${calculateAchievementsStatus} should exist`, () => {
+    expect(calculateAchievementsStatus).toBeDefined();
+  });
+});

@@ -1,6 +1,6 @@
-import express from 'express';
-import http from 'http';
-import io from 'socket.io';
+const app = require('express')();
+const http = require('http').createServer(app);
+const io = require ('socket.io')(http);
 
 import  { tasks }  from '../json-data/tasks.json';
 import  { achievements }  from '../json-data/achievements.json';
@@ -10,11 +10,12 @@ import { replacer, reviver } from './json-utility.js';
 import { connect } from '../db/db';
 import { PRODUCTION_DB_DSN, DEVELOPMENT_DB_DSN } from '../db/connection';
 
-const app = express();
-const PORT = 9000;
-http.Server(app);
-io(http.Server);
+const PORT = 4001;
 
+
+app.get('/', (req, res) => {
+  res.send('Yo!');
+})
 
 app.get('/challenge', (req, res) => {
   const challenge: Challenge = startNewChallenge(tasks, achievements, 30, 5);
@@ -36,6 +37,14 @@ app.get('/taskArchive/:challengeId', (req, res) => {
   res.send(taskArchive);
 })
 
+io.on('connection', (socket) => {
+  console.log('user is connected');
+  socket.emit('message', () => 'Hey, how is it going?');
+  socket.on('task-status', (taskStatus) => {
+    console.log(taskStatus);
+  })
+})
+
 // connect(PRODUCTION_DB_DSN)
 //   .then(() => {
 //     console.log('Connected to MongoDB');
@@ -44,4 +53,3 @@ app.get('/taskArchive/:challengeId', (req, res) => {
 //   .catch((err) => console.error(err));
 
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}!`));
-

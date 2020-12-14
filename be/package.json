@@ -57,10 +57,12 @@
     ]
   },
   "dependencies": {
+    "@types/mongoose": "^5.10.3",
     "esm": "^3.2.25",
     "express": "^4.17.1",
     "mongodb": "^3.6.3",
     "mongoose": "^5.10.18",
+    "socket.io": "^3.0.4",
     "uuid": "^8.3.1"
   }
 }

@@ -24,6 +24,16 @@
             "id": "5",
             "description": "Complete all tasks",
             "image": "placeholder string"
-        } 
+        },
+        {
+            "id": "6",
+            "description": "Interesting task",
+            "image": "placeholder string"
+        },
+        {
+            "id": "7",
+            "description": "Cool task",
+            "image": "placeholder string"
+        }
     ]
 }

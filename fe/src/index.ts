@@ -1,12 +1,7 @@
-import './styles.scss';
+import io from 'socket.io-client';
 
-function sayHello(): void {
-  const body = document.querySelector('body');
-  const h1 = document.createElement('h1');
-  h1.textContent = 'Hello, World!';
-  body.appendChild(h1);
-}
+const socket = io('http://localhost:9000');
 
-sayHello();
-
-module.exports = sayHello;
+socket.on('message', (data: any) => {
+  socket.emit('task-status', { taskStatus: 'Completed' });
+});
