@@ -24,16 +24,6 @@
             "id": "5",
             "description": "Complete all tasks",
             "image": "placeholder string"
-        },
-        {
-            "id": "6",
-            "description": "Some achievement",
-            "image": "placeholder string"
-        },
-        {
-            "id": "7",
-            "description": "Important achievement",
-            "image": "placeholder string"
-        }  
+        } 
     ]
 }
