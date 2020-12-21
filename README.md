@@ -12,3 +12,5 @@ To setup development environment locally please navigate to specific project fol
 3. [Test driven development](task-3.md)
 4. [Node.js 1](task-4.1.md), [Node.js 2](task-4.2.md)
 5. [Javascript frameworks](task-5.md)
+6. [Modern browser APIs](task-6.md)
+7. [React Native](task-7.md)
