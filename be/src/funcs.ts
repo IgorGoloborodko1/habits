@@ -5,6 +5,19 @@ import { achievements } from '../json-data/achievements.json';
 
 const defaultStatus: Status = { state: 'Pending', updated: new Date()};
 const challenges: Challenge[] = [];
+const user = {
+    id : '1',
+    name : 'Igor',
+    challenges,
+  }
+
+export function getCurrentChallenge(userId: string): Challenge | null {
+    if(user.challenges.length > 0) {
+        return user.challenges[0];
+    }
+
+    return null;
+}
 
 export function getCurrentTask(challengeId: string): ActualTask {
     const requiredChallenge: any = challenges.find(c => c.id === challengeId);
