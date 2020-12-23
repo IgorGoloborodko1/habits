@@ -1,12 +1,12 @@
 ### Home task – Modern Browser APIs
 
-1. Add vibration when the user completes their current task
+1. Add vibration when the user completes current task
 2. Change the greeting text depending on the user’s device. For example: "Hello my
 Apple/Android/Windows friend"
 3. When the device is offline, at the top of the screen show a notification with a corresponding message. Update the message when it becomes online and hide the notification after a few seconds
 4. Add manifest.json and register Service worker for offline support. Try your PWA on your device
 5. You will need to host your FE app using HTTPS. Heroku is a free and quite simple tool for this task
-* Sign Up for free
+* Sign up for free
 * Create new app
 * In the Deploy tab select Deployment method - Heroku Git and follow the instructions
 * Install serve or any similar package to your project dependencies for serving your FE application on Heroku
