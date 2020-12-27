@@ -27,12 +27,12 @@
         },
         {
             "id": "6",
-            "description": "Interesting task",
+            "description": "Interesting achievement",
             "image": "placeholder string"
         },
         {
             "id": "7",
-            "description": "Cool task",
+            "description": "Cool achievement",
             "image": "placeholder string"
         }
     ]

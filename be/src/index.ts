@@ -13,13 +13,13 @@ import { PRODUCTION_DB_DSN } from '../db/connection';
 const PORT = 4000;
 
 app.get('/login', (req, res) => {
-  const challenge: Challenge = getCurrentChallenge('1');
-  res.send({challengeStatus: null});
+  const challenge: Challenge | null = getCurrentChallenge('1');
+  res.send({challengeInfo: null});
 })
 
-app.get('/challenge', (req, res) => {
+app.get('/startChallenge', (req, res) => {
   const challenge: Challenge = startNewChallenge(tasks, achievements, 30, 5);
-  res.send(challenge.id);
+  res.send({challengeId : challenge.id});
 })
 
 app.get('/task/:challengeId', (req, res) => {
@@ -32,17 +32,9 @@ app.get('/achievements/:challengeId', (req, res) => {
   res.send(achievements);
 })
 
-app.get('/taskArchive/:challengeId', (req, res) => {
-  const taskArchive: Task[] = getTaskArchive(req.params.challengeId);
+app.get('/taskArchive', (req, res) => {
+  const taskArchive: any = getTaskArchive();
   res.send(taskArchive);
-})
-
-io.on('connection', (socket) => {
-  console.log('user is connected');
-  socket.emit('message', () => 'Hey, how is it going?');
-  socket.on('task-status', (taskStatus) => {
-    console.log(taskStatus);
-  })
 })
 
 connect(PRODUCTION_DB_DSN)
@@ -51,5 +43,3 @@ connect(PRODUCTION_DB_DSN)
     app.listen(PORT, () => console.log(`Server is running on port ${PORT}!`));
   })
   .catch((err) => console.error(err));
-
-// app.listen(PORT, () => console.log(`Server is running on port ${PORT}!`));

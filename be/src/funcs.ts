@@ -21,7 +21,6 @@ export function getCurrentChallenge(userId: string): Challenge | null {
 
 export function getCurrentTask(challengeId: string): ActualTask {
     const requiredChallenge: any = challenges.find(c => c.id === challengeId);
-    console.log(requiredChallenge);
     const dayOfChallenge: number = Math.floor((Date.now() - requiredChallenge.startDate) / (1000 * 60 *  60 * 24));
     const actualTaskId: string = requiredChallenge.tasksOrder[dayOfChallenge];
     const actualTask: any = tasks.find(t => t.id == actualTaskId);
@@ -36,12 +35,9 @@ export function getCurrentTask(challengeId: string): ActualTask {
 export function getAchievements(challengeId: string): ActualAchievement[] {
     const requiredChallenge: any = challenges.find(c => c.id === challengeId);
     const achievementsIds: string[] = Array.from(requiredChallenge.achievementStatus.keys());
-    console.log(requiredChallenge.achievementStatus.keys());
-    const actualAchievements = achievements.filter(a => {
-        if(!(achievementsIds.indexOf(a.id) !== -1)) {
-            return a;
-        }
-    });
+    console.log(achievementsIds);
+    const actualAchievements = achievements.filter(a => achievementsIds.includes(a.id));
+    console.log(actualAchievements);
     const actualAchievementsWStatus: ActualAchievement[] = actualAchievements.map(a => {
         return {
             id: a.id,
@@ -50,19 +46,31 @@ export function getAchievements(challengeId: string): ActualAchievement[] {
             status: defaultStatus,
         }
     });
+    console.log(actualAchievementsWStatus);
 
     return actualAchievementsWStatus;
 }
 
-export function getTaskArchive(challengeId: string): ArchiveItem[] {
-    const requiredChallenge: any = challenges.find(c => c.id === challengeId);
-    const achievedItems: ArchiveItem[] = requiredChallenge.tasksOrder.filter((t: any) => t.status !== 'Pending');
+export function getTaskArchive(): any {
+    const mockTasks = tasks.slice(0, 18);
+    const mockTasksWStatuses = mockTasks.map((t) => {
+        const rnd = Math.floor(Math.random() * 10 + 1);
+        if(rnd % 2 === 0) {
+            return {
+                id: t.id,
+                description: t.description,
+                status: 'Success'
+            }
+        } else {
+            return {
+                id: t.id,
+                description: t.description,
+                status: 'Failure'
+            }
+        }
+    });
 
-    if(!achievedItems) {
-        return null;
-    }
-
-    return achievedItems;
+    return mockTasksWStatuses;
 }
 
 export function startNewChallenge(tasks: Task[],
@@ -111,7 +119,7 @@ function pickRandomTasks(tasks: Task[], duration: number): string[] {
 
 function pickAchievements(achievements: Achievement[], numOfAchievements: number): string[] {
     const requiredAchievements: Achievement[] = achievements.filter(a => a.description === 'Complete all tasks' || a.description === 'Complete half of the tasks');
-    const otherAchievements: Achievement[] = achievements.filter(a => a.description !== 'Complete all the tasks' && a.description !== 'Complete half of the tasks');
+    const otherAchievements: Achievement[] = achievements.filter(a => a.description !== 'Complete all tasks' && a.description !== 'Complete half of the tasks');
     const ids: string[] = otherAchievements.map(a => a.id);
 
     for (let i = ids.length - 1; i > 0; i--) {
